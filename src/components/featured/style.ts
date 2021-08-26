@@ -37,4 +37,9 @@ export const Container = styled.div`
             color: var(--white);
         }
     }
+
+    @media(max-width: 768px){
+        background: url('/images/background-mobile.png') no-repeat center;
+        background-size: 100% 100%;
+    }
 `;
