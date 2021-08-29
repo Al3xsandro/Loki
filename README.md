@@ -4,6 +4,7 @@
 
   - React.js
   - Styled components
+  - Firebase
 
 ## Como iniciar?
 
