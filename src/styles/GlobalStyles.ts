@@ -11,5 +11,6 @@ export default createGlobalStyle`
         --background: rgb(32, 32, 36);
         --header: rgb(18, 18, 20);
         --white: #ffffff;
+        --blue: #0072D2;
     };
 `;
