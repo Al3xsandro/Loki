@@ -18,7 +18,10 @@ export function Featured() {
                             como o Deus do Mal em uma nova série que ocorre
                             após os eventos de “Vingadores: Endgame”.
                         </p>
-                        <div className="featured_buttons"></div>
+                        <div className="featured_buttons">
+                            <button className="watch_now">ASSISTIR MAIS TARDE</button>
+                            <button className="watch_trailer">TRAILER</button>
+                        </div>
                     </div>
                 </div>
             </div>
