@@ -92,8 +92,6 @@ export const Container = styled.div`
         display: flex;
         background: url('/images/background-mobile.png') no-repeat center;
         background-size: 100% 100%;
-    
-        height: 100vh;
 
         .featured_section {
             display: flex;
@@ -115,6 +113,10 @@ export const Container = styled.div`
                 margin: 1rem;
 
                 text-align: center;
+            }
+
+            .featured_buttons {
+                padding: 1rem;
             }
         }
     }

@@ -19,7 +19,7 @@ export function Featured() {
                             após os eventos de “Vingadores: Endgame”.
                         </p>
                         <div className="featured_buttons">
-                            <button className="watch_now">ASSISTIR MAIS TARDE</button>
+                            <button className="watch_now">ASSISTIR AGORA</button>
                             <button className="watch_trailer">TRAILER</button>
                         </div>
                     </div>
