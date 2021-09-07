@@ -5,15 +5,20 @@ export const Container = styled.div`
     flex-direction: column;
     justify-content: center;
 
-    margin: 1rem;
+    height: 100vh;
+    width: 100%;
+    
+    background: url(/images/background.png) center center / 100% 100% no-repeat;
+
+    box-shadow: rgb(0 0 0 / 70%) 0px 0px 400px 510px inset;
+    
+    overflow: hidden;
 
     .container_form {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
-
-        background: rgba(11, 11, 11, 0.29);
         
         border-radius: 0.8rem;
         
@@ -21,6 +26,8 @@ export const Container = styled.div`
         height: 27rem;
         
         margin: 0px auto;
+
+        background: rgb(18,18,20);
         
         padding: 2.6rem;
 
