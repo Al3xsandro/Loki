@@ -12,5 +12,11 @@ export default createGlobalStyle`
         --header: rgb(18, 18, 20);
         --white: #ffffff;
         --blue: #0072D2;
-    };
+    }
+
+    body {
+        background: var(--background);
+
+        height: 100vh;
+    }
 `;
