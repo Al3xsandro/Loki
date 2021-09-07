@@ -9,17 +9,20 @@ export const Container = styled.div`
 
     .container_form {
         display: flex;
+        justify-content: center;
+        align-items: center;
         flex-direction: column;
 
-        background: #0b0b0b4a;
+        background: rgba(11, 11, 11, 0.29);
+        
         border-radius: 0.8rem;
-
-        width: 25rem;
+        
+        width: 24.9rem;
         height: 27rem;
-
-        margin: 0 auto;
-
-        padding: 3rem;
+        
+        margin: 0px auto;
+        
+        padding: 2.6rem;
 
         .title {
             font-family: 'Roboto', sans-serif;
