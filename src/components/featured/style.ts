@@ -4,7 +4,7 @@ export const Container = styled.div`
     display: flex;
     justify-content: center;
 
-    height: 100%;
+    height: 100vh;
     width: 100%;
 
     background: url('/images/background.png') no-repeat center;
@@ -51,6 +51,38 @@ export const Container = styled.div`
 
                 padding: 1rem 2.75rem;
 
+                .featured_details {
+                    display: flex;
+                    justify-content: space-between;
+
+                    margin-top: 0.3rem;
+
+                    max-width: 22rem;
+
+                    .feature_details {
+                        display: flex;
+                        align-items: center;
+
+                        .feature_time {
+                            font-size: 1rem;
+                            color: var(--white);
+                            font-family: B612, sans-serif;
+                            font-weight: bold;
+                        }
+
+                        .rating {
+                            padding: 1rem 1.8rem;
+                        }
+                        
+                        .feature_release {
+                            font-size: 1rem;
+                            color: var(--white);
+                            font-family: B612, sans-serif;
+                            font-weight: bold;
+                        }
+                    }
+                }
+
                 .featured_description {
                     font-family: 'B612', sans-serif;
                     color: var(--white);
@@ -93,6 +125,8 @@ export const Container = styled.div`
         background: url('/images/background-mobile.png') no-repeat center;
         background-size: 100% 100%;
 
+        height: 100%;
+
         .featured_section {
             display: flex;
             justify-content: center;
@@ -113,6 +147,17 @@ export const Container = styled.div`
                 margin: 1rem;
 
                 text-align: center;
+
+                .featured_details {
+                    display: flex;
+                    align-items: center;
+
+                    .feature_details {
+                        .rating {
+                            margin-left: -1rem;
+                        }
+                    }
+                }
             }
 
             .featured_buttons {
