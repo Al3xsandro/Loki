@@ -4,6 +4,11 @@
 
 ## Demonstração
   - Demo: <a href="https://lokiflix.netlify.app/">`URL`</a>
+ 
+   - Acesso
+  
+     - Email: `demo@lokiflix.netlify.app`
+     - password: `hardpassword`
 
 
 ## Tecnologias
