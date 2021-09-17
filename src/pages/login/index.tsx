@@ -1,7 +1,30 @@
 import { HeaderMenu } from '../../components/header';
 import { Container } from './style';
 
+import { useState, FormEvent } from 'react';
+
+import { useAuth } from '../../hooks/useAuth';
+
+import { toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
+
 export function Login() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const { signIn, showToast } = useAuth();
+
+    async function handleLogin(event: FormEvent) {
+        event.preventDefault();
+
+        if(!email.trim() || !password){
+          return;
+        };
+
+        await signIn({ email, password });
+    };
+
     return (
         <>
             <HeaderMenu/>
@@ -10,7 +33,7 @@ export function Login() {
                    <div className="container_form">
                        <h1 className="title">Entrar</h1>
 
-                       <form className="form">
+                       <form className="form" onSubmit={handleLogin}>
                             <label>
                                 <span className="span">Email</span>
 
@@ -18,6 +41,7 @@ export function Login() {
                                     className="input"
                                     type="email"
                                     placeholder="Seu e-mail"
+                                    onChange={event => setEmail(event.target.value)}
                                     required
                                 />
                             </label>
@@ -29,13 +53,20 @@ export function Login() {
                                     className="input"
                                     type="password"
                                     placeholder="Sua senha"
+                                    onChange={event => setPassword(event.target.value)}
                                     required
                                 />
                             </label>
 
-                            <button className="button">Entrar</button>
+                            <button className="button" type="submit">Entrar</button>
                        </form>
                    </div>
+
+                    {
+                        !showToast ? <></> : toast.error('An error has occurred', {
+                            toastId: 'signIn'
+                        })
+                    }
             </Container>
         </>
     );
