@@ -9,11 +9,23 @@ import { toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
 
+import { useHistory } from 'react-router';
+
 export function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const { signIn, showToast } = useAuth();
+    const history = useHistory();
+
+    const { 
+        signIn,
+        showToast,
+        isAuthenticated
+    } = useAuth();
+
+    if(isAuthenticated){
+        history.push('/dashboard');
+    };
 
     async function handleLogin(event: FormEvent) {
         event.preventDefault();
