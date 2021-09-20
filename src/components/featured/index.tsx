@@ -5,7 +5,11 @@ import { BiTimeFive } from 'react-icons/bi'
 import Rating from '@material-ui/lab/Rating';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 
+import { usePlayer } from '../../hooks/usePlayer';
+
 export function Featured() {
+    const { handleWatch } = usePlayer();
+    
     return (
         <Container>
             <div className="featured">
@@ -39,8 +43,8 @@ export function Featured() {
                             </div>
                         </div>
                         <div className="featured_buttons">
-                            <button className="watch_now">ASSISTIR AGORA</button>
-                            <button className="watch_trailer">TRAILER</button>
+                            <button className="watch_now" onClick={handleWatch}>ASSISTIR AGORA</button>
+                            <button className="watch_trailer" onClick={handleWatch}>TRAILER</button>
                         </div>
                     </div>
                 </div>
