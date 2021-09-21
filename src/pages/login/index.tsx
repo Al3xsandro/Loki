@@ -75,7 +75,7 @@ export function Login() {
                    </div>
 
                     {
-                        !showToast ? <></> : toast.error('An error has occurred', {
+                        !showToast && toast.error('An error has occurred', {
                             toastId: 'signIn'
                         })
                     }
