@@ -99,26 +99,6 @@ export const Container = styled.div`
             }
         }
 
-        .newUser {
-            display: flex;
-            justify-content: center;
-
-            p {
-                color: #FFFF;
-            }
-
-            a {
-                color: #f3ff0078;
-                text-decoration: none;
-                cursor: pointer;
-                line-height: 1rem;
-                padding: 1rem 0.1rem;
-                opacity: 0.9;
-                font-size: 0.9rem;
-                font-family: Roboto, sans-serif;
-            }
-        }
-
         @media(max-width: 968px){
             display: flex;
             flex-direction: column;

@@ -9,6 +9,7 @@ import { PlayerProvider } from '../contexts/PlayerContext';
 
 import { Home } from '../pages/home';
 import { Login } from '../pages/login';
+import { SignUp} from '../pages/signUp/index';
 
 export function Routes() {
     return (
@@ -18,6 +19,7 @@ export function Routes() {
                     <Switch>
                         <Route path="/dashboard" component={Home} />
                         <Route path="/" component={Login} exact />
+                        <Route path="/signup" component={SignUp} />
                     </Switch>
                 </PlayerProvider>
             </AuthProvider>

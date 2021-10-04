@@ -18,6 +18,7 @@ type signIn = {
 interface AuthContextData {
     isAuthenticated: boolean;
     signIn({ email, password }: signIn): Promise<void>;
+    signUp({ email, password}: signIn): Promise<void>;
     showToast: boolean;
 };
 
@@ -46,11 +47,25 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
         });
     };
 
+    async function signUp({
+        email,
+        password
+    }: signIn){
+        await auth.createUserWithEmailAndPassword(email, password)
+        .then(response => {
+            setUser({ email: String(response.user?.email) });
+        }).catch((err: Error) => {
+            console.error(err);
+            return setShowToast(true);
+        })
+    }
+
     return (
         <AuthContext.Provider value={{ 
             showToast,
             isAuthenticated,
-            signIn
+            signIn,
+            signUp
         }}>
             { children }
         </AuthContext.Provider>

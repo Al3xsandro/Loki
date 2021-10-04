@@ -11,30 +11,27 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { useHistory } from 'react-router';
 
-export function Login() {
+
+export function SignUp(){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const history = useHistory();
 
     const { 
-        signIn,
+        signUp,
         showToast,
-        isAuthenticated
     } = useAuth();
 
-    if(isAuthenticated){
-        history.push('/dashboard');
-    };
-
-    async function handleLogin(event: FormEvent) {
+    async function handleSignUp(event: FormEvent) {
         event.preventDefault();
 
         if(!email.trim() || !password){
           return;
         };
 
-        await signIn({ email, password });
+        await signUp({ email, password });
+        history.push('/');
     };
 
     return (
@@ -43,9 +40,9 @@ export function Login() {
 
             <Container>
                    <div className="container_form">
-                       <h1 className="title">Entrar</h1>
+                       <h1 className="title">Cadastrar-se</h1>
 
-                       <form className="form" onSubmit={handleLogin}>
+                       <form className="form" onSubmit={handleSignUp}>
                             <label>
                                 <span className="span">Email</span>
 
@@ -70,11 +67,8 @@ export function Login() {
                                 />
                             </label>
 
-                            <button className="button" type="submit">Entrar</button>
+                            <button className="button" type="submit">Cadastrar-se</button>
                        </form>
-                        <div className="newUser">
-                            <p>Novo por aqui? <a href="/signup">Cadastre-se</a></p>
-                        </div>
                    </div>
 
                     {
@@ -85,4 +79,4 @@ export function Login() {
             </Container>
         </>
     );
-};
+}
