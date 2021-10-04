@@ -15,10 +15,15 @@ type signIn = {
     password: string;
 };
 
+type signUp = {
+    email: string;
+    password: string;
+}
+
 interface AuthContextData {
     isAuthenticated: boolean;
     signIn({ email, password }: signIn): Promise<void>;
-    signUp({ email, password}: signIn): Promise<void>;
+    signUp({ email, password}: signUp): Promise<void>;
     showToast: boolean;
 };
 
@@ -50,7 +55,7 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
     async function signUp({
         email,
         password
-    }: signIn){
+    }: signUp){
         await auth.createUserWithEmailAndPassword(email, password)
         .then(response => {
             setUser({ email: String(response.user?.email) });
