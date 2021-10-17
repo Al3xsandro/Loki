@@ -53,7 +53,7 @@ export const Container = styled.div`
                 padding: 0.2rem 0.3rem 1rem;
 
                 .span {
-                    font-family: 'Roboto', sans-serif;
+                    font-family: 'Lexend', sans-serif;
                     color: var(--white);
                     font-size: 1rem;
                     margin: 0.3rem;
@@ -105,6 +105,7 @@ export const Container = styled.div`
 
             p {
                 color: #FFFF;
+                font-family: 'Roboto', sans-serif;
             }
 
             a {
@@ -114,7 +115,7 @@ export const Container = styled.div`
                 line-height: 1rem;
                 padding: 1rem 0.1rem;
                 opacity: 0.9;
-                font-size: 0.9rem;
+                font-size: 1rem;
                 font-family: Roboto, sans-serif;
             }
         }
