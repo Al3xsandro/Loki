@@ -5,22 +5,12 @@ import { useState, FormEvent } from 'react';
 
 import { useAuth } from '../../hooks/useAuth';
 
-import { toast } from 'react-toastify';
-
-import 'react-toastify/dist/ReactToastify.css';
-
-import { useHistory } from 'react-router';
-
-
 export function SignUp(){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const history = useHistory();
-
     const { 
-        signUp,
-        showToast,
+        signUp
     } = useAuth();
 
     async function handleSignUp(event: FormEvent) {
@@ -31,7 +21,6 @@ export function SignUp(){
         };
 
         await signUp({ email, password });
-        history.push('/');
     };
 
     return (
@@ -70,12 +59,6 @@ export function SignUp(){
                             <button className="button" type="submit">Cadastrar-se</button>
                        </form>
                    </div>
-
-                    {
-                        showToast && toast.error('An error has occurred', {
-                            toastId: 'signIn'
-                        })
-                    }
             </Container>
         </>
     );

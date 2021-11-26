@@ -6,6 +6,8 @@ import {
 
 import { auth } from "../services/firebase";
 
+import { toast } from 'react-toastify';
+
 type User = {
     email: string;
 };
@@ -24,7 +26,6 @@ interface AuthContextData {
     isAuthenticated: boolean;
     signIn({ email, password }: signIn): Promise<void>;
     signUp({ email, password}: signUp): Promise<void>;
-    showToast: boolean;
 };
 
 type AuthContextProviderProps = {
@@ -35,7 +36,6 @@ export const AuthContext = createContext({} as AuthContextData);
 
 export function AuthProvider({ children }: AuthContextProviderProps) {
     const [user, setUser] = useState<User | null>(null);
-    const [showToast, setShowToast] = useState(false);
 
     const isAuthenticated = !!user;
 
@@ -46,9 +46,8 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
         await auth.signInWithEmailAndPassword(email, password)
         .then(response => {
             setUser({ email: String(response.user?.email) });
-        }).catch((err: Error) => {
-            console.error(err);
-            return setShowToast(true);
+        }).catch((err) => {
+            toast.error(String(err.message))
         });
     };
 
@@ -59,15 +58,13 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
         await auth.createUserWithEmailAndPassword(email, password)
         .then(response => {
             setUser({ email: String(response.user?.email) });
-        }).catch((err: Error) => {
-            console.error(err);
-            return setShowToast(true);
+        }).catch((err) => {
+            toast.error(String(err.message));
         })
     }
 
     return (
-        <AuthContext.Provider value={{ 
-            showToast,
+        <AuthContext.Provider value={{
             isAuthenticated,
             signIn,
             signUp

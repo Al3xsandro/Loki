@@ -5,10 +5,6 @@ import { useState, FormEvent } from 'react';
 
 import { useAuth } from '../../hooks/useAuth';
 
-import { toast } from 'react-toastify';
-
-import 'react-toastify/dist/ReactToastify.css';
-
 import { useHistory } from 'react-router';
 
 export function Login() {
@@ -19,7 +15,6 @@ export function Login() {
 
     const { 
         signIn,
-        showToast,
         isAuthenticated
     } = useAuth();
 
@@ -76,12 +71,6 @@ export function Login() {
                             <p>Novo por aqui? <a href="/signup">Cadastre-se</a></p>
                         </div>
                    </div>
-
-                    {
-                        showToast && toast.error('An error has occurred', {
-                            toastId: 'signIn'
-                        })
-                    }
             </Container>
         </>
     );
