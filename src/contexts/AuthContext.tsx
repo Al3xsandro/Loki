@@ -4,6 +4,8 @@ import {
     ReactNode
 } from "react";
 
+import { useHistory } from "react-router";
+
 import { auth } from "../services/firebase";
 
 import { toast } from 'react-toastify';
@@ -24,6 +26,7 @@ type signUp = {
 
 interface AuthContextData {
     isAuthenticated: boolean;
+    user: User | null;
     signIn({ email, password }: signIn): Promise<void>;
     signUp({ email, password}: signUp): Promise<void>;
 };
@@ -39,6 +42,8 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
 
     const isAuthenticated = !!user;
 
+    const history = useHistory();
+
     async function signIn({
         email,
         password
@@ -47,7 +52,7 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
         .then(response => {
             setUser({ email: String(response.user?.email) });
         }).catch((err) => {
-            toast.error(String(err.message))
+            toast.error(String(err.message));
         });
     };
 
@@ -56,10 +61,10 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
         password
     }: signUp){
         await auth.createUserWithEmailAndPassword(email, password)
-        .then(response => {
-            setUser({ email: String(response.user?.email) });
+        .then(() => {
+            history.push('/');
         }).catch((err) => {
-            toast.error(String(err.message));
+            toast.error(String(err.message));   
         })
     }
 
@@ -67,7 +72,8 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
         <AuthContext.Provider value={{
             isAuthenticated,
             signIn,
-            signUp
+            signUp,
+            user
         }}>
             { children }
         </AuthContext.Provider>
