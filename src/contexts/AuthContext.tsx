@@ -1,7 +1,8 @@
 import { 
     createContext,
     useState,
-    ReactNode
+    ReactNode,
+    useEffect
 } from "react";
 
 import { useHistory } from "react-router";
@@ -11,7 +12,7 @@ import { auth } from "../services/firebase";
 import { toast } from 'react-toastify';
 
 type User = {
-    email: string;
+    uid: string;
 };
 
 type signIn = {
@@ -44,13 +45,28 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
 
     const history = useHistory();
 
+    useEffect(() => {
+        const token = localStorage.getItem('token.loki')
+        const user = localStorage.getItem('user');
+
+        if(token) {
+            setUser({ uid: String(user) });
+        };
+
+    }, [])
+
     async function signIn({
         email,
         password
     }: signIn) {
         await auth.signInWithEmailAndPassword(email, password)
         .then(response => {
-            setUser({ email: String(response.user?.email) });
+            const token = response?.user?.getIdToken;
+
+            setUser({ uid: String(response.user?.uid) });
+
+            localStorage.setItem('token.loki', String(token));
+            localStorage.setItem('user', String(response?.user?.uid))
         }).catch((err) => {
             toast.error(String(err.message));
         });

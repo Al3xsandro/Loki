@@ -5,15 +5,19 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { Routes } from "./routes";
 
+import { AuthProvider } from './contexts/AuthContext';
+import { PlayerProvider } from './contexts/PlayerContext';
+
 export default function App() {
     return (
-        <>
-            <GlobalStyles/>
-            
-            <ToastContainer style={{ padding: '1rem' }}/>
+        <AuthProvider>
+            <PlayerProvider>
+                <GlobalStyles/>
+                
+                <ToastContainer style={{ padding: '1rem' }}/>
 
-            <Routes/>
-
-        </>
+                <Routes/>
+            </PlayerProvider>
+        </AuthProvider>
     );
 };
