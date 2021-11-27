@@ -1,18 +1,17 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+    height: 100vh;
+    width: 100%;
+
     display: flex;
     justify-content: center;
-
-    background: rgba(0, 0, 0, .5);
+    
     position: fixed;
     top: 0;
     left: 0;
 
-    width: 100%;
-    height: 100%;
-
-    padding: 1rem;
+    padding: 2rem;
 
     .close {
         height: 1rem;
@@ -26,6 +25,16 @@ export const Container = styled.div`
 
         &:hover{
             opacity: 0.8;
+        }
+    }
+
+    @media(max-width: 968px){
+        height: 15rem;
+
+        display: flex;
+
+        .close {
+            margin-top: 1.5rem;
         }
     }
 `;
