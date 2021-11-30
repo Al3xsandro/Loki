@@ -28,6 +28,7 @@ type signUp = {
 interface AuthContextData {
     isAuthenticated: boolean;
     user: User | null;
+    isLoading: boolean;
     signIn({ email, password }: signIn): Promise<void>;
     signUp({ email, password}: signUp): Promise<void>;
 };
@@ -40,6 +41,7 @@ export const AuthContext = createContext({} as AuthContextData);
 
 export function AuthProvider({ children }: AuthContextProviderProps) {
     const [user, setUser] = useState<User | null>(null);
+    const [isLoading, setIsLoading] = useState(false);
 
     const isAuthenticated = !!user;
 
@@ -59,6 +61,8 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
         email,
         password
     }: signIn) {
+        setIsLoading(true);
+
         await auth.signInWithEmailAndPassword(email, password)
         .then(response => {
             const token = response?.user?.getIdToken;
@@ -67,7 +71,10 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
 
             localStorage.setItem('token.loki', String(token));
             localStorage.setItem('user', String(response?.user?.uid))
+
+            setIsLoading(false);
         }).catch((err) => {
+            setIsLoading(false);
             toast.error(String(err.message));
         });
     };
@@ -76,11 +83,14 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
         email,
         password
     }: signUp){
+        setIsLoading(true);
+
         await auth.createUserWithEmailAndPassword(email, password)
         .then(() => {
             history.push('/');
         }).catch((err) => {
-            toast.error(String(err.message));   
+            toast.error(String(err.message));
+            setIsLoading(false);
         })
     }
 
@@ -89,6 +99,7 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
             isAuthenticated,
             signIn,
             signUp,
+            isLoading,
             user
         }}>
             { children }

@@ -5,12 +5,15 @@ import { useState, FormEvent } from 'react';
 
 import { useAuth } from '../../hooks/useAuth';
 
+import { ClipLoader } from 'react-spinners';
+
 export function SignUp(){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const { 
-        signUp
+        signUp,
+        isLoading
     } = useAuth();
 
     async function handleSignUp(event: FormEvent) {
@@ -56,7 +59,11 @@ export function SignUp(){
                                 />
                             </label>
 
-                            <button className="button" type="submit">Cadastrar-se</button>
+                            <button className="button" type="submit">
+                                {
+                                    isLoading ? <ClipLoader size="20px" color="#ffff" /> : <> Cadastrar-se </>
+                                }
+                            </button>
                        </form>
                    </div>
             </Container>

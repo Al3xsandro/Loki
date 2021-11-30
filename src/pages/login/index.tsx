@@ -7,6 +7,8 @@ import { useAuth } from '../../hooks/useAuth';
 
 import { useHistory } from 'react-router';
 
+import { ClipLoader } from 'react-spinners';
+
 export function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -15,7 +17,8 @@ export function Login() {
 
     const { 
         signIn,
-        isAuthenticated
+        isAuthenticated,
+        isLoading
     } = useAuth();
 
     if(isAuthenticated){
@@ -65,7 +68,11 @@ export function Login() {
                                 />
                             </label>
 
-                            <button className="button" type="submit">Entrar</button>
+                            <button className="button" type="submit">
+                                {
+                                    isLoading ? <ClipLoader size="20px" color="#ffff" /> : <> Entrar </>
+                                }
+                            </button>
                        </form>
                         <div className="newUser">
                             <p>Novo por aqui? <a href="/signup">Cadastre-se</a></p>

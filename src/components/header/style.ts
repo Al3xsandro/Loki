@@ -28,5 +28,16 @@ export const Header = styled.header`
             
             font-size: 1.75rem;
         }
+
+        .menu_hamburguer {
+            display: flex;
+            background: transparent;
+            border: none;
+
+            &:hover {
+                opacity: 0.8;
+                cursor: pointer;
+            }
+        }
     }
 `;
