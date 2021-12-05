@@ -5,8 +5,6 @@ import {
     useEffect
 } from "react";
 
-import { useHistory } from "react-router";
-
 import { auth } from "../services/firebase";
 
 import { toast } from 'react-toastify';
@@ -44,8 +42,6 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
     const [isLoading, setIsLoading] = useState(false);
 
     const isAuthenticated = !!user;
-
-    const history = useHistory();
 
     useEffect(() => {
         const token = localStorage.getItem('token.loki')
@@ -87,8 +83,10 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
 
         await auth.createUserWithEmailAndPassword(email, password)
         .then(() => {
-            history.push('/');
-        }).catch((err) => {
+            toast.success("Congrulations!");
+            setIsLoading(false);
+        })
+        .catch((err) => {
             toast.error(String(err.message));
             setIsLoading(false);
         })
