@@ -6,10 +6,13 @@ import { useState, FormEvent } from 'react';
 import { useAuth } from '../../hooks/useAuth';
 
 import { ClipLoader } from 'react-spinners';
+import { useHistory } from 'react-router';
 
 export function SignUp(){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const history = useHistory();
 
     const { 
         signUp,
@@ -24,6 +27,7 @@ export function SignUp(){
         };
 
         await signUp({ email, password });
+        history.push("/");
     };
 
     return (
