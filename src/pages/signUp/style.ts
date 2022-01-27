@@ -93,9 +93,16 @@ export const Container = styled.div`
                 margin: 0.6rem;
                 width: 19rem;
 
+                cursor: pointer;
+
                 font-family: Roboto, sans-serif;
                 font-weight: 600;
                 font-size: 1rem;
+
+                &:hover {
+                    filter: brightness(0.9);
+                    transition: 0.3s ease;
+                }
             }
         }
 
